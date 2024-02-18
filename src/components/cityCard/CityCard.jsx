@@ -5,7 +5,7 @@ const Card = ({ data }) => {
   const { name, image, date } = data;
   const handleCardClick = (event) => {
     const queryCity = event.target.id;
-    getFunction();
+    getFunction(queryCity);
   };
   return (
     <StyledCard

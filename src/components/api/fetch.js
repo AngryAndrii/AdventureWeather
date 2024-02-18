@@ -7,7 +7,7 @@ const getFunction = async (city) => {
     const resp = await axios.get(
       `${BASE_URI}${city}/today?unitGroup=metric&include=days&key=${API_KEY}&contentType=json`
     );
-    console.log(resp);
+    return resp.data;
   } catch (error) {
     console.log(error);
   }

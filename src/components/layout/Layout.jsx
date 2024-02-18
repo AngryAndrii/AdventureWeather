@@ -1,7 +1,8 @@
 import React from "react";
+import StyledLayout from "./Layout.styled";
 
 const Layout = ({ children }) => {
-  return <main>{children}</main>;
+  return <StyledLayout>{children}</StyledLayout>;
 };
 
 export default Layout;

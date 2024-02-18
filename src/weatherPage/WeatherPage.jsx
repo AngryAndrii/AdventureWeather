@@ -2,7 +2,6 @@ import { uid } from "uid";
 import Card from "../components/cityCard/CityCard";
 
 const WeatherPage = () => {
-  // console.log(import.meta.env.VITE_API_KEY);
   const cities = [
     {
       name: "paris",
@@ -41,6 +40,7 @@ const WeatherPage = () => {
       {cities.map((el) => {
         return <Card data={el} key={uid()} />;
       })}
+      <div className="current-weather"></div>
     </>
   );
 };

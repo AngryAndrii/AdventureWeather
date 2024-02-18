@@ -41,6 +41,9 @@ jobs:
         run: |
           npm run build
           cp dist/index.html dist/404.html
+        env:
+          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+          VITE_BASE_URI: ${{secrets.VITE_BASE_URI}}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

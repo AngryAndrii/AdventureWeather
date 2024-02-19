@@ -30,13 +30,11 @@ const WeatherPage = () => {
     });
   }
 
-  const cities = citiesList;
-
   return (
     <div>
       <StyledWeatherPage>
         <div className="city-list">
-          {cities.map((el) => {
+          {citiesList.map((el) => {
             return (
               <Card
                 data={el}

@@ -1,12 +1,12 @@
 export const citiesList = [
   {
     name: "paris",
-    image: "parisImage",
+    image: "./images/cities/paris.jpg",
     date: null,
   },
   {
-    name: "california",
-    image: "californiaimage",
+    name: "los angeles",
+    image: "./images/cities/Los_Angeles.jpg",
     date: null,
   },
 ];
@@ -14,34 +14,32 @@ export const citiesList = [
 export const avaliableCities = [
   {
     name: "paris",
-    image: "parisImage",
+    image: "./images/cities/paris.jpg",
     date: null,
   },
   {
-    name: "california",
-    image: "californiaimage",
+    name: "los angeles",
+    image: "./images/cities/Los_Angeles.jpg",
     date: null,
   },
   {
     name: "poltava",
-    image: "poltavaimage",
+    image: "./images/cities/poltava.jpg",
     date: null,
   },
   {
     name: "antalya",
-    image: "antalyaimage",
+    image: "./images/cities/antalya.jpg",
     date: null,
   },
   {
     name: "bern",
-    image: "bernimage",
+    image: "./images/cities/bern.jpg",
     date: null,
   },
   {
     name: "berlin",
-    image: "berlinimage",
+    image: "./images/cities/berlin.jpg",
     date: null,
   },
 ];
-
-// citiesList, avaliableCities };

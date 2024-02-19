@@ -6,7 +6,7 @@ const Card = ({ data, setCurrentWeather }) => {
   const { name, image } = data;
 
   const handleCardClick = async (event) => {
-    const queryCity = event.target.id;
+    const queryCity = event.currentTarget.id;
     try {
       const data = await getFunction(queryCity);
       const { address, days } = data;

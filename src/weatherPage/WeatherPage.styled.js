@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import image from "../../public/images/sky.jpg";
+// import image from "../../public/images/sky.jpg";
+import image from "/images/sky.jpg";
 
 const StyledWeatherPage = styled.div`
   display: flex;

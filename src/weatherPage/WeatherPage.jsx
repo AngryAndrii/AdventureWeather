@@ -1,10 +1,12 @@
 import { uid } from "uid";
 import Card from "../components/cityCard/CityCard";
 import StyledWeatherPage from "./WeatherPage.styled";
-import { useContext, createContext, useState } from "react";
-export const Context = createContext();
+import { useState } from "react";
+import Modal from "../components/modal/Modal";
+import { citiesList } from "../components/cities";
 
 const WeatherPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentWeather, setCurrentWeather] = useState({});
   const dayArr = [
     "Sunday",
@@ -20,45 +22,28 @@ const WeatherPage = () => {
   const day = new Date(datetime);
   const dayOfWeek = dayArr[day.getDay()];
 
-  const cities = [
-    {
-      name: "paris",
-      image: "parisImage",
-      date: null,
-    },
-    {
-      name: "california",
-      image: "californiaimage",
-      date: null,
-    },
-    {
-      name: "poltava",
-      image: "poltavaimgae",
-      date: null,
-    },
-    {
-      name: "antalya",
-      image: "antalyaimage",
-      date: null,
-    },
-    // {
-    //   name: "bern",
-    //   image: "bernimage",
-    //   date: null,
-    // },
-    // {
-    //   name: "berlin",
-    //   image: "berlinimage",
-    //   date: null,
-    // },
-  ];
+  if (isModalOpen) {
+    document.addEventListener("keyup", (event) => {
+      if (event.key === "Escape") {
+        setIsModalOpen(false);
+      }
+    });
+  }
+
+  const cities = citiesList;
 
   return (
-    <Context.Provider value={[currentWeather, setCurrentWeather]}>
+    <div>
       <StyledWeatherPage>
         <div className="city-list">
           {cities.map((el) => {
-            return <Card data={el} key={uid()} />;
+            return (
+              <Card
+                data={el}
+                key={uid()}
+                setCurrentWeather={setCurrentWeather}
+              />
+            );
           })}
         </div>
         <div className="current-weather">
@@ -73,7 +58,15 @@ const WeatherPage = () => {
           )}
         </div>
       </StyledWeatherPage>
-    </Context.Provider>
+      <button
+        onClick={() => {
+          setIsModalOpen(true);
+        }}
+      >
+        Open Modal
+      </button>
+      {isModalOpen ? <Modal openModal={setIsModalOpen} /> : null}
+    </div>
   );
 };
 

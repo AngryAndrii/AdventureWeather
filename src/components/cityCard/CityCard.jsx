@@ -1,15 +1,14 @@
-import { useContext, useLayoutEffect, useState } from "react";
+import { uid } from "uid";
 import getFunction from "../api/fetch";
 import StyledCard from "./CityCard.styled";
 
 const Card = ({ data, setCurrentWeather }) => {
-  const { name } = data;
+  const { name, image } = data;
 
   const handleCardClick = async (event) => {
     const queryCity = event.target.id;
     try {
       const data = await getFunction(queryCity);
-      console.log(data);
       const { address, days } = data;
       const { icon, datetime, temp } = days[0];
       setCurrentWeather({ address, icon, datetime, temp });
@@ -24,7 +23,12 @@ const Card = ({ data, setCurrentWeather }) => {
       onClick={(event) => {
         handleCardClick(event);
       }}
-    ></StyledCard>
+    >
+      <div className="image-container">
+        <img src={image} width={130} height={80} alt={name} />
+      </div>
+      <p>{name}</p>
+    </StyledCard>
   );
 };
 

@@ -1,21 +1,22 @@
 import { useState } from "react";
+import { avaliableCities } from "../../cities";
+import { uid } from "uid";
 
 const Form = ({ submitHandler }) => {
-  //   const [value, setValue] = useState("");
-
   return (
     <>
       <form action="" onSubmit={submitHandler}>
-        <label htmlFor="pet-select">Choose a pet:</label>
+        <label htmlFor="city-select">City</label>
 
-        <select name="pets" id="pet-select">
-          <option value="">--Please choose an option--</option>
-          <option value="paris">paris</option>
-          <option value="california">california</option>
-          <option value="poltava">poltava</option>
-          <option value="antalya">antalya</option>
-          <option value="bern">bern</option>
-          <option value="berlin">berlin</option>
+        <select name="cities" id="city-select">
+          <option value="">Please select a city</option>
+          {avaliableCities.map((el) => {
+            return (
+              <option key={uid()} value={el.name}>
+                {el.name}
+              </option>
+            );
+          })}
         </select>
         <button type="submit">Submit!</button>
       </form>

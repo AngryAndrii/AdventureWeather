@@ -1,11 +1,9 @@
 import { useContext, useLayoutEffect, useState } from "react";
 import getFunction from "../api/fetch";
 import StyledCard from "./CityCard.styled";
-import { Context } from "../../weatherPage/WeatherPage";
 
-const Card = ({ data }) => {
+const Card = ({ data, setCurrentWeather }) => {
   const { name } = data;
-  const [currentWeather, setCurrentWeather] = useContext(Context);
 
   const handleCardClick = async (event) => {
     const queryCity = event.target.id;

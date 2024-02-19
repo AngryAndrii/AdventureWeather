@@ -3,5 +3,7 @@ import "modern-normalize";
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    
+    button {
+      border: none;
+    }
   }`;

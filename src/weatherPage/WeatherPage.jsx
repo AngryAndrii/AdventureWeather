@@ -8,6 +8,7 @@ import { citiesList } from "../components/cities";
 const WeatherPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentWeather, setCurrentWeather] = useState({});
+  let citiesToShow;
   const dayArr = [
     "Sunday",
     "Monday",
@@ -17,6 +18,13 @@ const WeatherPage = () => {
     "Friday",
     "Saturday",
   ];
+
+  const cities = JSON.parse(localStorage.getItem("savedCities"));
+  if (cities != null) {
+    citiesToShow = cities;
+  } else {
+    citiesToShow = citiesList;
+  }
 
   const { address, icon, datetime, temp } = currentWeather;
   const day = new Date(datetime);
@@ -34,7 +42,7 @@ const WeatherPage = () => {
     <div>
       <StyledWeatherPage>
         <div className="city-list">
-          {citiesList.map((el) => {
+          {citiesToShow.map((el) => {
             return (
               <Card
                 data={el}

@@ -21,6 +21,7 @@ const Modal = ({ openModal }) => {
       }) === undefined
     ) {
       citiesList.push(newCity);
+      localStorage.setItem("savedCities", JSON.stringify(citiesList));
       closeFunction();
     } else {
       console.log("this city already in list, please select new");

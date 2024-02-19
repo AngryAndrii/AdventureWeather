@@ -43,3 +43,13 @@ export const avaliableCities = [
     date: null,
   },
 ];
+
+export const dayArr = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];

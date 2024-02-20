@@ -3,11 +3,12 @@ import Card from "../components/cityCard/CityCard";
 import StyledWeatherPage from "./WeatherPage.styled";
 import { useState } from "react";
 import Modal from "../components/modal/Modal";
-import { citiesList, dayArr } from "../components/cities";
+import { citiesList } from "../components/cities";
+import CurWeatherDisplay from "../components/curWeatherDisplay/CurWeatherDisplay";
 
 const WeatherPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentWeather, setCurrentWeather] = useState({});
+  const [currentWeather, setCurrentWeather] = useState(null);
   const [cardSLide, setCardSlide] = useState(0);
   let citiesToShow;
 
@@ -19,10 +20,6 @@ const WeatherPage = () => {
     citiesToShow = citiesList;
   }
 
-  const { address, icon, datetime, temp } = currentWeather;
-  const day = new Date(datetime);
-  const dayOfWeek = dayArr[day.getDay()];
-
   if (isModalOpen) {
     document.addEventListener("keyup", (event) => {
       if (event.key === "Escape") {
@@ -32,10 +29,17 @@ const WeatherPage = () => {
   }
 
   const handleRightClick = (event) => {
-    setCardSlide((prev) => prev - 130);
+    console.log(citiesList.length);
+    if (-cities.length * 130 >= -(cities.length + 1) * 130) {
+      setCardSlide((prev) => prev - 130);
+    }
+    return;
   };
   const handleLeftClick = (event) => {
-    setCardSlide((prev) => prev + 130);
+    if (cardSLide < 0) {
+      setCardSlide((prev) => prev + 130);
+    }
+    return;
   };
 
   return (
@@ -73,15 +77,8 @@ const WeatherPage = () => {
           </button>
         </div>
         <div className="current-weather">
-          {!currentWeather && <p>select city, please</p>}
-          {currentWeather && (
-            <div>
-              <p>{dayOfWeek}</p>
-              <p>{temp}</p>
-              <p>{icon}</p>
-              <p>{address}</p>
-            </div>
-          )}
+          {!currentWeather && <p>please select city</p>}
+          {currentWeather && <CurWeatherDisplay curWeather={currentWeather} />}
         </div>
       </StyledWeatherPage>
       <button

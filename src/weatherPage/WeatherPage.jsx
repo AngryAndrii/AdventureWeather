@@ -1,24 +1,23 @@
 import { uid } from "uid";
 import Card from "../components/cityCard/CityCard";
 import StyledWeatherPage from "./WeatherPage.styled";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Modal from "../components/modal/Modal";
 import { citiesList } from "../components/cities";
 import CurWeatherDisplay from "../components/curWeatherDisplay/CurWeatherDisplay";
+import ArrowButtons from "../components/buttons";
+import ModalButton from "../components/modal/ModalButton";
 
 const WeatherPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentWeather, setCurrentWeather] = useState(null);
   const [cardSLide, setCardSlide] = useState(0);
-  let citiesToShow;
+  const [cities, setCities] = useState(citiesList);
 
-  const cities = JSON.parse(localStorage.getItem("savedCities"));
-
-  if (cities != null) {
-    citiesToShow = cities;
-  } else {
-    citiesToShow = citiesList;
-  }
+  useEffect(() => {
+    let getCities = JSON.parse(localStorage.getItem("savedCities"));
+    setCities(getCities);
+  }, []);
 
   if (isModalOpen) {
     document.addEventListener("keyup", (event) => {
@@ -30,14 +29,14 @@ const WeatherPage = () => {
 
   const handleRightClick = (event) => {
     console.log(citiesList.length);
-    if (-cities.length * 130 >= -(cities.length + 1) * 130) {
-      setCardSlide((prev) => prev - 130);
-    }
+    // if (-cities.length * 130 >= -(cities.length + 1) * 130) {
+    setCardSlide((prev) => prev - 140);
+    // }
     return;
   };
   const handleLeftClick = (event) => {
     if (cardSLide < 0) {
-      setCardSlide((prev) => prev + 130);
+      setCardSlide((prev) => prev + 140);
     }
     return;
   };
@@ -45,49 +44,36 @@ const WeatherPage = () => {
   return (
     <div>
       <StyledWeatherPage $props={cardSLide}>
-        <div className="sliderContainer">
-          <div className="city-list">
-            {citiesToShow.map((el) => {
-              return (
-                <Card
-                  data={el}
-                  key={uid()}
-                  setCurrentWeather={setCurrentWeather}
-                />
-              );
-            })}
-          </div>
+        <div className="left-container">
+          <section className="slider-section">
+            <div className="sliderContainer">
+              <div className="city-list">
+                {cities.map((el) => {
+                  return (
+                    <Card
+                      data={el}
+                      key={uid()}
+                      setCurrentWeather={setCurrentWeather}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            <ArrowButtons
+              handleLeftClick={handleLeftClick}
+              handleRightClick={handleRightClick}
+            />
+          </section>
+          <ModalButton setIsModalOpen={setIsModalOpen} />
         </div>
-        <div className="arrow-buttons">
-          <button
-            className="left"
-            onClick={() => {
-              handleLeftClick();
-            }}
-          >
-            Left
-          </button>
-          <button
-            className="right"
-            onClick={() => {
-              handleRightClick();
-            }}
-          >
-            right
-          </button>
-        </div>
+
         <div className="current-weather">
-          {!currentWeather && <p>please select city</p>}
+          {!currentWeather && (
+            <p className="alert-message">Please choose a city!</p>
+          )}
           {currentWeather && <CurWeatherDisplay curWeather={currentWeather} />}
         </div>
       </StyledWeatherPage>
-      <button
-        onClick={() => {
-          setIsModalOpen(true);
-        }}
-      >
-        Open Modal
-      </button>
       {isModalOpen ? <Modal openModal={setIsModalOpen} /> : null}
     </div>
   );

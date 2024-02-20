@@ -8,16 +8,16 @@ const CurWeatherDisplay = ({ curWeather }) => {
 
   return (
     <StyleCurWeatherDisplay>
-      <div>
-        <p>{dayOfWeek}</p>
-        <p>{temp}</p>
+      <p className="day">{dayOfWeek}</p>
+      <div className="temp-img-container">
         <img
           className="icon"
           src={`./images/weather-icons/${icon}.svg`}
           alt={icon}
         />
-        <p>{address}</p>
+        <p className="temp">{temp}°C</p>
       </div>
+      <p className="address">{address}</p>
     </StyleCurWeatherDisplay>
   );
 };

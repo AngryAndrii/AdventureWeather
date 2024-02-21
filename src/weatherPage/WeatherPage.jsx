@@ -7,10 +7,12 @@ import { citiesList } from "../components/cities";
 import CurWeatherDisplay from "../components/curWeatherDisplay/CurWeatherDisplay";
 import ArrowButtons from "../components/buttons";
 import ModalButton from "../components/modal/ModalButton";
+import LongWeather from "../components/longweather/LongWeather";
 
 const WeatherPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentWeather, setCurrentWeather] = useState(null);
+  const [longWeather, setLongWeather] = useState(null);
   const [cardSLide, setCardSlide] = useState(0);
   const [cities, setCities] = useState(citiesList);
 
@@ -47,26 +49,31 @@ const WeatherPage = () => {
     <div>
       <StyledWeatherPage $props={cardSLide}>
         <div className="left-container">
-          <section className="slider-section">
-            <div className="sliderContainer">
-              <div className="city-list">
-                {cities.map((el) => {
-                  return (
-                    <Card
-                      data={el}
-                      key={uid()}
-                      setCurrentWeather={setCurrentWeather}
-                    />
-                  );
-                })}
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <section className="slider-section">
+              <div className="sliderContainer">
+                <div className="city-list">
+                  {cities.map((el) => {
+                    return (
+                      <Card
+                        data={el}
+                        key={uid()}
+                        setCurrentWeather={setCurrentWeather}
+                        setLongWeather={setLongWeather}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-            <ArrowButtons
-              handleLeftClick={handleLeftClick}
-              handleRightClick={handleRightClick}
-            />
-          </section>
-          <ModalButton setIsModalOpen={setIsModalOpen} />
+              <ArrowButtons
+                handleLeftClick={handleLeftClick}
+                handleRightClick={handleRightClick}
+              />
+            </section>
+            <ModalButton setIsModalOpen={setIsModalOpen} />
+          </div>
+
+          <LongWeather longWeather={longWeather} />
         </div>
 
         <div className="current-weather">

@@ -1,3 +1,5 @@
+import { dayArr } from "../../cities";
+
 export const dateChanger = (d) => {
   let curr_date = d.getDate();
   if (curr_date.toString().length == 1) {
@@ -24,4 +26,10 @@ export const dateForShow = (d) => {
   let curr_year = d.getFullYear();
   let newDate = curr_date + "," + curr_month + "," + curr_year;
   return newDate;
+};
+
+export const getDayOfWeek = (datetime) => {
+  const day = new Date(datetime);
+  const dayOfWeek = dayArr[day.getDay()];
+  return dayOfWeek;
 };

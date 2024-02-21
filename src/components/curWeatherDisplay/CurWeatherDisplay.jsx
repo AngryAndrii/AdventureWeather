@@ -1,10 +1,10 @@
 import { dayArr } from "../cities";
+import { getDayOfWeek } from "../modal/form/dateChanger";
 import StyleCurWeatherDisplay from "./CurWeatherDisplay.styled";
 
 const CurWeatherDisplay = ({ curWeather }) => {
   const { address, icon, datetime, temp } = curWeather;
-  const day = new Date(datetime);
-  const dayOfWeek = dayArr[day.getDay()];
+  const dayOfWeek = getDayOfWeek(datetime);
 
   return (
     <StyleCurWeatherDisplay>

@@ -45,7 +45,7 @@ const StyledWeatherPage = styled.div`
 
   .left-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: auto;
   }
 

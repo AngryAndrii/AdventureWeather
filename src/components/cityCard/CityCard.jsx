@@ -1,9 +1,14 @@
 import { uid } from "uid";
-import getFunction from "../api/fetch";
+import {
+  extractFromWeatherData,
+  getFunction,
+  getWeatherData,
+} from "../api/fetch";
 import StyledCard from "./CityCard.styled";
 import { useRef, useState } from "react";
+import { dateForShow } from "../modal/form/dateChanger";
 
-const Card = ({ data, setCurrentWeather }) => {
+const Card = ({ data, setCurrentWeather, setLongWeather }) => {
   const { name, image, startDate, endDate } = data;
 
   const handleCardClick = async (event) => {
@@ -13,6 +18,9 @@ const Card = ({ data, setCurrentWeather }) => {
       const { address, days } = data;
       const { icon, datetime, temp } = days[0];
       setCurrentWeather({ address, icon, datetime, temp });
+      const weatherdata = await getWeatherData(queryCity, startDate, endDate);
+      let resp = extractFromWeatherData(weatherdata);
+      setLongWeather(resp);
     } catch (error) {
       console.log(error);
     }

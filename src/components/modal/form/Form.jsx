@@ -4,6 +4,7 @@ import { uid } from "uid";
 import { dateChanger } from "./dateChanger";
 
 const Form = ({ submitHandler }) => {
+  const [firstDay, setFirstDay] = useState();
   let todayDate = new Date();
   let todayDate2 = new Date();
   const datePlus15 = todayDate2.setDate(todayDate.getDate() + 15);
@@ -30,12 +31,15 @@ const Form = ({ submitHandler }) => {
           min={dateChanger(todayDate)}
           max={dateChanger(createdDate)}
           id="start-date-select"
+          onChange={(event) => {
+            setFirstDay(event.target.value);
+          }}
         />
         <label htmlFor="end-date-select"></label>
         <input
           type="date"
           id="end-date-select"
-          min={dateChanger(todayDate)}
+          min={firstDay}
           max={dateChanger(createdDate)}
         />
         <button type="submit">Submit!</button>

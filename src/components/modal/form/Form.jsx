@@ -3,6 +3,10 @@ import { avaliableCities } from "../../cities";
 import { uid } from "uid";
 
 const Form = ({ submitHandler }) => {
+  // const todayDate = new Date();
+  // console.log(todayDate);
+  let todayDate = "2024.02.21";
+
   return (
     <>
       <form action="" onSubmit={submitHandler}>
@@ -18,6 +22,10 @@ const Form = ({ submitHandler }) => {
             );
           })}
         </select>
+        {/* <label htmlFor="start-date-select">Start date</label>
+        <input type="date" min={todayDate} id="start-date-select" />
+        <label htmlFor="end-date-select"></label>
+        <input type="date" id="end-date-select" /> */}
         <button type="submit">Submit!</button>
       </form>
     </>

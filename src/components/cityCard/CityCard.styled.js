@@ -11,6 +11,10 @@ const StyledCard = styled.div`
     cursor: pointer;
   }
 
+  &.selected {
+    color: red;
+  }
+
   .image-container {
     width: 100%;
     height: 80px;

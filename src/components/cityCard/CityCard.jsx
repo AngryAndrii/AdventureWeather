@@ -1,6 +1,7 @@
 import { uid } from "uid";
 import getFunction from "../api/fetch";
 import StyledCard from "./CityCard.styled";
+import { useRef, useState } from "react";
 
 const Card = ({ data, setCurrentWeather }) => {
   const { name, image } = data;

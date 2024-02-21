@@ -48,7 +48,7 @@ const WeatherPage = () => {
           <section className="slider-section">
             <div className="sliderContainer">
               <div className="city-list">
-                {cities.map((el) => {
+                {cities?.map((el) => {
                   return (
                     <Card
                       data={el}

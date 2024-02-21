@@ -4,7 +4,7 @@ import StyledCard from "./CityCard.styled";
 import { useRef, useState } from "react";
 
 const Card = ({ data, setCurrentWeather }) => {
-  const { name, image } = data;
+  const { name, image, startDate, endDate } = data;
 
   const handleCardClick = async (event) => {
     const queryCity = event.currentTarget.id;
@@ -28,7 +28,11 @@ const Card = ({ data, setCurrentWeather }) => {
       <div className="image-container">
         <img src={image} width={130} height={80} alt={name} />
       </div>
-      <p>{name}</p>
+      <p className="name">{name}</p>
+      <div className="date-container">
+        <p className="start">{startDate}</p>
+        <p className="end">{endDate}</p>
+      </div>
     </StyledCard>
   );
 };

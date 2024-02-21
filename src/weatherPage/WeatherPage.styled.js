@@ -9,6 +9,7 @@ const StyledWeatherPage = styled.div`
   height: 500px;
   position: relative;
   padding: 5px;
+  overflow: hidden;
 
   .slider-section {
     display: flex;
@@ -90,7 +91,6 @@ const StyledWeatherPage = styled.div`
     padding-top: 110px;
     width: 250px;
     height: 500px;
-    outline: 1px solid tomato;
   }
 `;
 

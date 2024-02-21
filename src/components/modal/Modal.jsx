@@ -3,6 +3,7 @@ import StyledModal from "./Modal.styled";
 import { RxCross1 } from "react-icons/rx";
 import Form from "./form/Form";
 import { avaliableCities, citiesList } from "../cities";
+import { dateChanger, dateForShow } from "./form/dateChanger";
 
 const Modal = ({ openModal }) => {
   const closeFunction = () => {
@@ -12,7 +13,14 @@ const Modal = ({ openModal }) => {
   const submitHandler = (event) => {
     event.preventDefault();
     const selectCity = event.target[0].value;
+    const startDate = event.target[1].value;
+    const endDate = event.target[2].value;
+    console.log(startDate);
+    console.log(endDate);
+
     const newCity = avaliableCities.find((el) => {
+      el.startDate = startDate;
+      el.endDate = endDate;
       return el.name === selectCity;
     });
     if (

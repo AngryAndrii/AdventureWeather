@@ -16,7 +16,9 @@ const WeatherPage = () => {
 
   useEffect(() => {
     let getCities = JSON.parse(localStorage.getItem("savedCities"));
-    setCities(getCities);
+    if (getCities) {
+      setCities(getCities);
+    }
   }, []);
 
   if (isModalOpen) {
@@ -48,7 +50,7 @@ const WeatherPage = () => {
           <section className="slider-section">
             <div className="sliderContainer">
               <div className="city-list">
-                {cities?.map((el) => {
+                {cities.map((el) => {
                   return (
                     <Card
                       data={el}

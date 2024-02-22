@@ -15,13 +15,14 @@ const WeatherPage = () => {
   const [longWeather, setLongWeather] = useState(null);
   const [cardSLide, setCardSlide] = useState(0);
   const [cities, setCities] = useState(citiesList);
+  const [listChanger, setListChanger] = useState(0);
 
   useEffect(() => {
     let getCities = JSON.parse(localStorage.getItem("savedCities"));
     if (getCities) {
       setCities(getCities);
     }
-  }, []);
+  }, [listChanger]);
 
   if (isModalOpen) {
     document.addEventListener("keyup", (event) => {
@@ -83,7 +84,9 @@ const WeatherPage = () => {
           {currentWeather && <CurWeatherDisplay curWeather={currentWeather} />}
         </div>
       </StyledWeatherPage>
-      {isModalOpen ? <Modal openModal={setIsModalOpen} /> : null}
+      {isModalOpen ? (
+        <Modal openModal={setIsModalOpen} setListChanger={setListChanger} />
+      ) : null}
     </div>
   );
 };

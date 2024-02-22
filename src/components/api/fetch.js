@@ -35,6 +35,5 @@ export const extractFromWeatherData = (weatherdata) => {
     let tempmax = el.tempmax;
     arr.push({ dayOfWeek, icon, tempmin, tempmax });
   });
-  console.log(arr);
   return arr;
 };

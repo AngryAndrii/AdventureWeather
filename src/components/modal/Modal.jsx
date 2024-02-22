@@ -3,22 +3,20 @@ import StyledModal from "./Modal.styled";
 import { RxCross1 } from "react-icons/rx";
 import Form from "./form/Form";
 import { avaliableCities, citiesList } from "../cities";
-import { dateChanger, dateForShow } from "./form/dateChanger";
 
-const Modal = ({ openModal }) => {
+const Modal = ({ openModal, setListChanger }) => {
+  const [optionValue, setOptionValue] = useState();
   const closeFunction = () => {
     openModal(false);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const selectCity = event.target[0].value;
+    const selectCity = optionValue;
     const startDate = event.target[1].value;
     const endDate = event.target[2].value;
-    console.log(startDate);
-    console.log(endDate);
 
-    const newCity = avaliableCities.find((el) => {
+    let newCity = avaliableCities.find((el) => {
       el.startDate = startDate;
       el.endDate = endDate;
       return el.name === selectCity;
@@ -30,9 +28,10 @@ const Modal = ({ openModal }) => {
     ) {
       citiesList.push(newCity);
       localStorage.setItem("savedCities", JSON.stringify(citiesList));
+      setListChanger((prev) => prev + 1);
       closeFunction();
     } else {
-      console.log("this city already in list, please select new");
+      alert("this city already in list, please select new");
     }
   };
 
@@ -54,8 +53,9 @@ const Modal = ({ openModal }) => {
         >
           <RxCross1 />
         </button>
-        Hello, it is modal
-        <Form submitHandler={submitHandler} />
+        <h3>Create Trip</h3>
+
+        <Form submitHandler={submitHandler} setOptionValue={setOptionValue} />
       </div>
     </StyledModal>
   );

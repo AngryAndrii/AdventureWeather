@@ -16,12 +16,18 @@ const WeatherPage = () => {
   const [cardSLide, setCardSlide] = useState(0);
   const [cities, setCities] = useState(citiesList);
 
-  useEffect(() => {
-    let getCities = JSON.parse(localStorage.getItem("savedCities"));
-    if (getCities) {
-      setCities(getCities);
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log("get");
+  //   const a = JSON.parse(localStorage.getItem("savedCities"));
+  //   setCities(a);
+  // }, []);
+
+  // useEffect(() => {
+  //   if (citiesList.length != 2) {
+  //     console.log("set");
+  //     localStorage.setItem("savedCities", JSON.stringify(citiesList));
+  //   }
+  // }, [isModalOpen]);
 
   if (isModalOpen) {
     document.addEventListener("keyup", (event) => {
@@ -32,10 +38,7 @@ const WeatherPage = () => {
   }
 
   const handleRightClick = (event) => {
-    console.log(citiesList.length);
-    // if (-cities.length * 130 >= -(cities.length + 1) * 130) {
     setCardSlide((prev) => prev - 140);
-    // }
     return;
   };
   const handleLeftClick = (event) => {
@@ -53,7 +56,7 @@ const WeatherPage = () => {
             <section className="slider-section">
               <div className="sliderContainer">
                 <div className="city-list">
-                  {cities.map((el) => {
+                  {cities?.map((el) => {
                     return (
                       <Card
                         data={el}
@@ -83,7 +86,9 @@ const WeatherPage = () => {
           {currentWeather && <CurWeatherDisplay curWeather={currentWeather} />}
         </div>
       </StyledWeatherPage>
-      {isModalOpen ? <Modal openModal={setIsModalOpen} /> : null}
+      {isModalOpen ? (
+        <Modal openModal={setIsModalOpen} setCities={setCities} />
+      ) : null}
     </div>
   );
 };

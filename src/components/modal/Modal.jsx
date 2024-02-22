@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StyledModal from "./Modal.styled";
 import { RxCross1 } from "react-icons/rx";
 import Form from "./form/Form";
 import { avaliableCities, citiesList } from "../cities";
 
-const Modal = ({ openModal, setListChanger }) => {
+const Modal = ({ openModal, setCities }) => {
   const [optionValue, setOptionValue] = useState();
+
   const closeFunction = () => {
     openModal(false);
   };
@@ -27,7 +28,8 @@ const Modal = ({ openModal, setListChanger }) => {
       }) === undefined
     ) {
       citiesList.push(newCity);
-      localStorage.setItem("savedCities", JSON.stringify(citiesList));
+      setCities(citiesList);
+      alert("Trip successfully added to your list");
       closeFunction();
     } else {
       alert("this city already in list, please select new");

@@ -5,8 +5,6 @@ import {
   getWeatherData,
 } from "../api/fetch";
 import StyledCard from "./CityCard.styled";
-import { useRef, useState } from "react";
-import { dateForShow } from "../modal/form/dateChanger";
 
 const Card = ({ data, setCurrentWeather, setLongWeather }) => {
   const { name, image, startDate, endDate } = data;

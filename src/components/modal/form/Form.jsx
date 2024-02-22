@@ -6,7 +6,6 @@ import { StyledForm } from "./Form.styled";
 
 const Form = ({ submitHandler, setOptionValue }) => {
   const [firstDay, setFirstDay] = useState();
-  const [value, setValue] = useState();
   let todayDate = new Date();
   let todayDate2 = new Date();
   const datePlus15 = todayDate2.setDate(todayDate.getDate() + 15);
@@ -26,12 +25,10 @@ const Form = ({ submitHandler, setOptionValue }) => {
             setOptionValue(event.target.value);
           }}
         >
-          <option disabled value="">
-            Please select a city
-          </option>
+          <option value="">please, select city</option>
           {avaliableCities.map((el) => {
             return (
-              <option key={uid()} value={el.name}>
+              <option key={el.image} value={el.name}>
                 {el.name}
               </option>
             );
@@ -48,7 +45,6 @@ const Form = ({ submitHandler, setOptionValue }) => {
           id="start-date-select"
           onChange={(event) => {
             setFirstDay(event.target.value);
-            setValue(event.target.value);
           }}
         />
         <label htmlFor="end-date-select">

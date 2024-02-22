@@ -4,21 +4,24 @@ import { StyledLongWeather } from "./LongWeather.styled";
 const LongWeather = ({ longWeather }) => {
   return (
     <StyledLongWeather>
-      <ul>
+      <ul className="days-list">
         {longWeather?.map(({ dayOfWeek, icon, tempmax, tempmin }) => {
           return (
-            <li key={uid()}>
-              <ul>
-                <li>{dayOfWeek}</li>
+            <li className="day-li" key={uid()}>
+              <ul className="item-ul">
+                <li className="day">{dayOfWeek}</li>
                 <li>
-                  <img
-                    className="icon"
-                    src={`./images/weather-icons/${icon}.svg`}
-                    alt="lol"
-                  />
+                  <div className="img-container">
+                    <img
+                      className="icon"
+                      src={`./images/weather-icons/${icon}.svg`}
+                      alt={icon}
+                    />
+                  </div>
                 </li>
-                <li>{tempmin}</li>
-                <li>{tempmax}</li>
+                <li className="min-max">
+                  {tempmin}°/{tempmax}°
+                </li>
               </ul>
             </li>
           );

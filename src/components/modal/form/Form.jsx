@@ -2,8 +2,9 @@ import { useState } from "react";
 import { avaliableCities } from "../../cities";
 import { uid } from "uid";
 import { dateChanger } from "./dateChanger";
+import { StyledForm } from "./Form.styled";
 
-const Form = ({ submitHandler }) => {
+const Form = ({ submitHandler, setOptionValue }) => {
   const [firstDay, setFirstDay] = useState();
   let todayDate = new Date();
   let todayDate2 = new Date();
@@ -11,22 +12,33 @@ const Form = ({ submitHandler }) => {
   const createdDate = new Date(datePlus15);
 
   return (
-    <>
+    <StyledForm>
       <form action="" onSubmit={submitHandler}>
-        <label htmlFor="city-select">City</label>
-
-        <select name="cities" id="city-select">
-          <option value="">Please select a city</option>
+        <label htmlFor="city-select">
+          <span className="star">*</span>City
+        </label>
+        <select
+          required
+          name="cities"
+          id="city-select"
+          onChange={(event) => {
+            setOptionValue(event.target.value);
+          }}
+        >
+          <option value="">please, select city</option>
           {avaliableCities.map((el) => {
             return (
-              <option key={uid()} value={el.name}>
+              <option key={el.image} value={el.name}>
                 {el.name}
               </option>
             );
           })}
         </select>
-        <label htmlFor="start-date-select">Start date</label>
+        <label htmlFor="start-date-select">
+          <span className="star">*</span> Start date
+        </label>
         <input
+          required
           type="date"
           min={dateChanger(todayDate)}
           max={dateChanger(createdDate)}
@@ -35,16 +47,21 @@ const Form = ({ submitHandler }) => {
             setFirstDay(event.target.value);
           }}
         />
-        <label htmlFor="end-date-select"></label>
+        <label htmlFor="end-date-select">
+          <span className="star">*</span> End date
+        </label>
         <input
+          required
           type="date"
           id="end-date-select"
           min={firstDay}
           max={dateChanger(createdDate)}
         />
-        <button type="submit">Submit!</button>
+        <button className="submit-button" type="submit">
+          Save
+        </button>
       </form>
-    </>
+    </StyledForm>
   );
 };
 

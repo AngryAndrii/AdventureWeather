@@ -45,6 +45,12 @@ export const avaliableCities = [
     endDate: null,
   },
   {
+    name: "madrid",
+    image: "./images/cities/madrid.jpg",
+    startDate: null,
+    endDate: null,
+  },
+  {
     name: "berlin",
     image: "./images/cities/berlin.jpg",
     startDate: null,

@@ -12,6 +12,7 @@ const StyledModal = styled.div`
   .box {
     position: fixed;
     background-color: white;
+    padding: 20px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -25,8 +26,8 @@ const StyledModal = styled.div`
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    top: 5px;
-    right: 5px;
+    top: 20px;
+    right: 15px;
   }
 `;
 

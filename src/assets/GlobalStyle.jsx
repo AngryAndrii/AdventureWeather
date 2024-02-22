@@ -9,4 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     img {
       display: block;
     }
+    ul {
+      list-style: none;
+    }
   }`;
